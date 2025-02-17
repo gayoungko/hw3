@@ -6,10 +6,12 @@
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.3"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.3"></script>
     <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe@0.4"></script>
     <link href="https://unpkg.com/jspsych@7.3.4/css/jspsych.css" rel="stylesheet" type="text/css" />
 </head>
 <body></body>
 <script>
+    
     const jsPsych = initJsPsych({
         on_finish: function() {
             jsPsych.data.displayData(); 
@@ -57,7 +59,16 @@
     randomize_order: true
     };
 
-    const timeline = [trial_procedure];
+
+    const save_data_trial = {
+    type: jsPsychPipe,
+    action: "save",
+    experiment_id: "Lps9Ilbqnci2", 
+    filename: "stroop_data.csv",
+    data_string: ()=>jsPsych.data.get().csv()
+    };
+
+    const timeline = [trial_procedure, save_data_trial];
 
     jsPsych.run(timeline);
 </script>
