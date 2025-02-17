@@ -68,16 +68,24 @@
     const save_data_trial = {
         type: jsPsychPipe,
         action: "save",
-        experiment_id: "Lps9Ilbqnci2",  // Replace with your experiment ID!
+        experiment_id: "Lps9Ilbqnci2",  
         filename: "stroop_data.csv",
         data_string: ()=>jsPsych.data.get().csv(),
-        on_finish: function(data){alert(data.result.message)}
+        on_finish: function(data){
+            console.log('Save response:', data);
+            if(data && data.success){
+                alert("Data successfully saved");
+            } else {
+                alert("Error saving data.");
+            }
+        }
     };
+    
 
     const end_trial = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: 'Nothing left to do here.'
-};
+    };
 
     const timeline = [trial_procedure, saving, save_data_trial];
 
