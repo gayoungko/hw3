@@ -54,21 +54,26 @@
     };
 
     const trial_procedure = {
-    timeline: [ready_screen, stroop_trial],
-    timeline_variables: timeline_variables,
-    randomize_order: true
+        timeline: [ready_screen, stroop_trial],
+        timeline_variables: timeline_variables,
+        randomize_order: true
+    };
+
+    const saving = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: 'This text is example data we want to save.<br>Press any key to try to save it to OSF.'
     };
 
 
     const save_data_trial = {
-    type: jsPsychPipe,
-    action: "save",
-    experiment_id: "Lps9Ilbqnci2", 
-    filename: "stroop_data.csv",
-    data_string: ()=>jsPsych.data.get().csv()
+        type: jsPsychPipe,
+        action: "save",
+        experiment_id: "Lps9Ilbqnci2",  // Replace with your experiment ID!
+        filename: "stroop_data.csv",
+        data_string: ()=>jsPsych.data.get().csv()
     };
 
-    const timeline = [trial_procedure, save_data_trial];
+    const timeline = [trial_procedure, saving, save_data_trial];
 
     jsPsych.run(timeline);
 </script>
