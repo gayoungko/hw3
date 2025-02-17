@@ -70,8 +70,14 @@
         action: "save",
         experiment_id: "Lps9Ilbqnci2",  // Replace with your experiment ID!
         filename: "stroop_data.csv",
-        data_string: ()=>jsPsych.data.get().csv()
+        data_string: ()=>jsPsych.data.get().csv(),
+        on_finish: function(data){alert(data.result.message)}
     };
+
+    const end_trial = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: 'Nothing left to do here.'
+};
 
     const timeline = [trial_procedure, saving, save_data_trial];
 
